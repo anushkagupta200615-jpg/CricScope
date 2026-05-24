@@ -1096,17 +1096,9 @@ if st.session_state.page == "Analysis":
         crr = score / overs if overs > 0 else 0
         rrr = (runs_left * 6) / balls_left if balls_left > 0 else 0
 
-        team_aliases = {
-            "Punjab Kings": "Kings XI Punjab",
-        }
-        batting_team_model = team_aliases.get(batting_team, batting_team)
-        bowling_team_model = team_aliases.get(bowling_team, bowling_team)
-        if batting_team_model != batting_team or bowling_team_model != bowling_team:
-            st.caption("Using historical team name for model compatibility.")
-
         input_df = pd.DataFrame({
-            'batting_team': [batting_team_model],
-            'bowling_team': [bowling_team_model],
+            'batting_team': [batting_team],
+            'bowling_team': [bowling_team],
             'city': ['Mumbai'],
             'runs_left': [runs_left],
             'balls_left': [balls_left],
