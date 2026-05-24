@@ -641,6 +641,14 @@ team_data = {
     "Sunrisers Hyderabad": {
         "logo": "http://assets.designhill.com/design-blog/wp-content/uploads/2025/03/8-4.jpg",
         "abbr": "SRH", "color": "#f97316"
+    },
+    "Lucknow Super Giants": {
+        "logo": "https://upload.wikimedia.org/wikipedia/en/a/a3/Lucknow_Super_Giants_logo.png",
+        "abbr": "LSG", "color": "#63b1d9"
+    },
+    "Gujarat Titans": {
+        "logo": "https://upload.wikimedia.org/wikipedia/en/f/f6/Gujarat_Titans_Logo.png",
+        "abbr": "GT", "color": "#0055b8"
     }
 }
 
@@ -769,15 +777,17 @@ def train_model(model_name='logistic'):
 
     logging.info(f"Cross Validation Scores: {scores}")
     logging.info(f"Average CV Accuracy: {scores.mean():.4f}")
-    logging.info(
-    f"Test Accuracy: {accuracy_score(y_test,predictions):.4f}"
-    )
+
     pipe.fit(X_train, y_train)
 
     predictions = pipe.predict(X_test)
 
+    logging.info(
+        f"Test Accuracy: {accuracy_score(y_test, predictions):.4f}"
+    )
+
     print(
-        f"Test Accuracy: {accuracy_score(y_test,predictions):.4f}"
+        f"Test Accuracy: {accuracy_score(y_test, predictions):.4f}"
     )
 
     joblib.dump(pipe, model_path)
@@ -890,7 +900,7 @@ if st.session_state.page == "Dashboard":
     st.markdown("""
         <div class="stats-row">
             <div class="stat-pill">
-                <div class="stat-value">8</div>
+                <div class="stat-value">10</div>
                 <div class="stat-label">IPL Teams</div>
             </div>
             <div class="stat-pill">

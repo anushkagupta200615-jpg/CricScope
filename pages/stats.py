@@ -151,14 +151,14 @@ else:
         """, unsafe_allow_html=True)
 
     # recent 5 matches
-    st.markdown("**Recent Encounters**")
-    recent = h2h[["Season", "date", "venue", "winner", "win_by_runs", "win_by_wickets"]].tail(5).iloc[::-1]
-    recent.columns = ["Season", "Date", "Venue", "Winner", "Win by Runs", "Win by Wickets"]
-    st.dataframe(
-        recent,
-        use_container_width=True,
-        hide_index=True,
-    )
+    # st.markdown("**Recent Encounters**")
+    # recent = h2h[["Season", "date", "venue", "winner", "win_by_runs", "win_by_wickets"]].tail(5).iloc[::-1]
+    # recent.columns = ["Season", "Date", "Venue", "Winner", "Win by Runs", "Win by Wickets"]
+    # st.dataframe(
+    #     recent,
+    #     use_container_width=True,
+    #     hide_index=True,
+    # )
 
 st.markdown("---")
 
