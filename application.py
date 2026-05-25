@@ -961,7 +961,7 @@ with st.sidebar:
                     <span style="color:rgba(212,175,55,0.6);margin-right:8px;font-size:12px;">✉</span>
                     <a href="mailto:itsarnav.singh80@gmail.com"
                        style="color:rgba(200,185,140,0.6);font-size:11px;text-decoration:none;letter-spacing:0.2px;">
-                       itsarnav.singh80@gmail.com
+                        itsarnav.singh80@gmail.com
                     </a>
                 </p>
                 <p style="margin:0 0 2px 0;padding:8px 8px;">
