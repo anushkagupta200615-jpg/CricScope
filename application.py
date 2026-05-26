@@ -924,6 +924,8 @@ with st.sidebar:
 # DASHBOARD PAGE
 # -----------------------------------
 if st.session_state.page == "Dashboard":
+    if "selected_team" not in st.session_state:
+       st.session_state.selected_team = None
 
     st.markdown("""
         <div class="hero-wrapper">
@@ -1001,6 +1003,10 @@ if st.session_state.page == "Dashboard":
                     </div>
                 </div>
             """, unsafe_allow_html=True)
+            if st.button(f"View {tdata['abbr']} Analysis", key=f"team_{i}"):
+                 st.session_state.selected_team = team_name
+                 st.session_state.page = "Team Analysis"
+                 st.rerun()
 
     st.markdown("""
         <div style="padding:0 60px 32px; text-align:center;">
@@ -1298,3 +1304,162 @@ if st.session_state.page == "Analysis":
         """, unsafe_allow_html=True)
 
     st.markdown('</div>', unsafe_allow_html=True)  # close main-pad
+    
+# -----------------------------------
+# TEAM ANALYSIS PAGE
+# -----------------------------------
+if st.session_state.page == "Team Analysis":
+    
+    if "selected_team" not in st.session_state:
+        st.warning("Please select a team from Dashboard.")
+        st.stop()
+    
+    st.markdown("""
+<div style="padding: 30px 50px;">
+""", unsafe_allow_html=True)
+
+    team = st.session_state.selected_team
+    
+    matches_df = pd.read_csv("matches.csv")
+
+    team_matches = matches_df[
+        (matches_df["team1"] == team) |
+        (matches_df["team2"] == team)
+    ]
+
+    matches_played = len(team_matches)
+
+    wins = len(
+        team_matches[
+            team_matches["winner"] == team
+        ]
+    )
+
+    losses = matches_played - wins
+
+    win_rate = round((wins / matches_played) * 100, 1) if matches_played > 0 else 0
+
+    st.title("🏏 Team Analysis")
+
+    if team:
+        st.markdown(
+    f"""
+    <h2 style="
+        color:{team_data[team]['color']};
+        text-align:center;
+        margin-bottom:20px;
+    ">
+        {team}
+    </h2>
+    """,
+    unsafe_allow_html=True
+)
+         # Team Logo
+        if team in team_data:
+                c1, c2, c3 = st.columns([1,2,1])
+
+    with c2:
+        st.image(team_data[team]["logo"], width=180)
+        
+        st.markdown("---")
+
+        col1, col2, col3, col4 = st.columns(4)
+
+        with col1:
+            st.metric("Matches", matches_played)
+
+        with col2:
+            st.metric("Wins", wins)
+
+        with col3:
+            st.metric("Losses", losses)
+
+        with col4:
+            st.metric("Win Rate", f"{win_rate}%")
+        
+    # Performance Overview
+        st.subheader("📊 Performance Overview")
+        
+        winning_matches = team_matches[
+        team_matches["winner"] == team
+]
+        best_venue = winning_matches["venue"].mode()[0]
+
+        seasons_played = team_matches["Season"].nunique()
+        
+        pom_count = winning_matches["player_of_match"].value_counts()
+        top_player = pom_count.index[0]
+        top_player_awards = pom_count.iloc[0]
+
+        col1, col2, col3 = st.columns(3)
+
+        with col1:
+                st.metric("🏟 Best Venue", best_venue)
+
+        with col2:
+                st.metric("Seasons Played", seasons_played)
+
+        with col3:
+              st.metric(
+        "🏆 Top Performer",
+        top_player,
+        f"{top_player_awards} Awards"
+)
+
+        st.markdown("---")
+
+     # Team Strength Analysis
+        st.subheader("📈 Team Statistics")
+        
+        deliveries_df = pd.read_csv("deliveries.csv")
+
+        team_batting = deliveries_df[
+        deliveries_df["batting_team"] == team
+]
+        total_runs = team_batting["total_runs"].sum()
+
+        team_bowling = deliveries_df[
+        deliveries_df["bowling_team"] == team
+]   
+        total_wickets = team_bowling[
+        team_bowling["player_dismissed"].notna()
+].shape[0]
+        
+        fielding_events = team_bowling[
+        team_bowling["dismissal_kind"].isin(
+        ["caught", "run out", "stumped"]
+    )
+]
+
+        fielding_count = len(fielding_events)
+            
+        batting_strength = min(round(total_runs / 40000 * 100), 100)
+
+        bowling_strength = min(round(total_wickets / 1200 * 100), 100)
+
+        fielding_strength = min(round(fielding_count / 800 * 100), 100)
+       
+        # Batting
+        st.markdown(
+            f"🏏 **Total Runs** : {total_runs:,} ({batting_strength}%)"
+        )
+        st.progress(batting_strength / 100)
+
+        # Bowling
+        st.markdown(
+            f"🎯 **Wickets Taken** : {total_wickets} ({bowling_strength}%)"
+        )
+        st.progress(bowling_strength / 100)
+
+        # Fielding
+        st.markdown(
+            f"🧤 **Fielding Dismissals** : {fielding_count} ({fielding_strength}%)"
+        )
+        st.progress(fielding_strength / 100)
+        
+    
+        if st.button("⬅ Back to Dashboard"):
+            st.session_state.page = "Dashboard"
+            st.rerun()
+            
+st.markdown("</div>", unsafe_allow_html=True)
