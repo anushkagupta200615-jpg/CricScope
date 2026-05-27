@@ -24,22 +24,22 @@
 
 <br/>
 
-![Contributors](https://img.shields.io/github/contributors/Arnav-Singh-5080/CricScope?style=for-the-badge)
-![Open Issues](https://img.shields.io/github/issues/Arnav-Singh-5080/CricScope?style=for-the-badge)
-![Last Commit](https://img.shields.io/github/last-commit/Arnav-Singh-5080/CricScope?style=for-the-badge)
+![Contributors](https://img.shields.io/github/contributors/Arnav-Singh-5080/cricscope?style=for-the-badge)
+![Open Issues](https://img.shields.io/github/issues/Arnav-Singh-5080/cricscope?style=for-the-badge)
+![Last Commit](https://img.shields.io/github/last-commit/Arnav-Singh-5080/cricscope?style=for-the-badge)
 
 <br/><br/>
 
-<a href="https://github.com/Arnav-Singh-5080/CricScope/stargazers">
-  <img src="https://img.shields.io/github/stars/Arnav-Singh-5080/CricScope?style=social" />
+<a href="https://github.com/Arnav-Singh-5080/cricscope/stargazers">
+  <img src="https://img.shields.io/github/stars/Arnav-Singh-5080/cricscope?style=social" />
 </a>
 &nbsp;
-<a href="https://github.com/Arnav-Singh-5080/CricScope/network/members">
-  <img src="https://img.shields.io/github/forks/Arnav-Singh-5080/CricScope?style=social" />
+<a href="https://github.com/Arnav-Singh-5080/cricscope/network/members">
+  <img src="https://img.shields.io/github/forks/Arnav-Singh-5080/cricscope?style=social" />
 </a>
 &nbsp;
-<a href="https://github.com/Arnav-Singh-5080/CricScope/issues">
-  <img src="https://img.shields.io/github/issues/Arnav-Singh-5080/CricScope?style=social" />
+<a href="https://github.com/Arnav-Singh-5080/cricscope/issues">
+  <img src="https://img.shields.io/github/issues/Arnav-Singh-5080/cricscope?style=social" />
 </a>
 
 </div>
@@ -51,7 +51,7 @@
 
 ## Live Demo
 
-<a href="https://CricScope-live.streamlit.app/" target="_blank">
+<a href="https://cricscope-live.streamlit.app/" target="_blank">
   <img src="https://img.shields.io/badge/Launch%20App-CricScope-d4af37?style=for-the-badge&logo=streamlit&logoColor=white" />
 </a>
 
@@ -230,7 +230,7 @@ trained on IPL ball-by-ball match data spanning IPL seasons from 2008–2020.
 ![Demo](assets/cricscope.gif)
 
 ```bash
-CricScope/
+cricscope/
 │
 ├── assets/
 │   ├── dashboard.png
@@ -270,8 +270,8 @@ https://www.kaggle.com/datasets/patrickb1912/ipl-complete-dataset-20082020
 ## 1 — Clone Repository
 
 ```bash
-git clone https://github.com/Arnav-Singh-5080/CricScope.git
-cd CricScope
+git clone https://github.com/Arnav-Singh-5080/cricscope.git
+cd cricscope
 ```
 
 ---
@@ -301,7 +301,7 @@ pip install -r requirements.txt
 ## 4 — Add Dataset
 
 ```text
-CricScope/
+cricscope/
 ├── app.py
 ├── matches.csv
 └── deliveries.csv
@@ -395,10 +395,10 @@ This repository welcomes:
 # 1. Fork the repository
 
 # 2. Clone your fork
-git clone https://github.com/<your-username>/CricScope.git
+git clone https://github.com/<your-username>/cricscope.git
 
 # 3. Move into project
-cd CricScope
+cd cricscope
 
 # 4. Create feature branch
 git checkout -b feature/your-feature-name
